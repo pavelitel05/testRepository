@@ -13,7 +13,7 @@ public class TheGame {
         player_1.setName(scanner.nextLine());
         System.out.println("Отлично, " + player_1.getName() + " теперь мы можем приступать!");
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUncdit.SECONDS.sleep(2);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
