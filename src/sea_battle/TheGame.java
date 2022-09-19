@@ -5,29 +5,28 @@ import java.util.concurrent.TimeUnit;
 
 public class TheGame {
     public static void main(String[] args){
-        Players player_1 = new Players();
-        Players robot_1 = new Players();
+        Player playerOne = new Player();
+        Player robotOne = new Player();
         System.out.println("Здравствуйте, для старта введите свое имя:");
         Scanner scanner = new Scanner(System.in);
-        robot_1.setName("Робот");
-        player_1.setName(scanner.nextLine());
-        System.out.println("Отлично, " + player_1.getName() + " теперь мы можем приступать!");
+        robotOne.setName("Робот");
+        playerOne.setName(scanner.nextLine());
+        System.out.println("Отлично, " + playerOne.getName() + " теперь мы можем приступать!");
         try {
-            TimeUncdit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-
-        Areas playerArea = new Areas();
-        Areas robotArea = new Areas();
+        Area playerArea = new Area();
+        Area robotArea = new Area();
         robotArea.createOwnerArea();
         playerArea.createOwnerArea();
 
         System.out.println("Ниже представленны два поля, вверхнее- ваше, нижнее- робота.");
-        System.out.println(player_1.getName());
+        System.out.println(playerOne.getName());
         playerArea.showOwnerArea();
         System.out.println("");
-        System.out.println(robot_1.getName());
+        System.out.println(robotOne.getName());
         robotArea.showOwnerArea();
     }
 }
