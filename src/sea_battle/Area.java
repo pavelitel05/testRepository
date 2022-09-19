@@ -3,7 +3,7 @@ package sea_battle;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Area {
+public class Area extends Ships{
     @Getter
     @Setter
     private int[][] ownerArea = new int[10][10];
@@ -22,7 +22,8 @@ public class Area {
                 System.out.print(j);
                 System.out.print("  ");
             }
-            System.out.println("");
+            System.out.println();
         }
+        System.out.println();
     }
 }

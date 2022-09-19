@@ -25,8 +25,10 @@ public class TheGame {
         System.out.println("Ниже представленны два поля, вверхнее- ваше, нижнее- робота.");
         System.out.println(playerOne.getName());
         playerArea.showOwnerArea();
-        System.out.println("");
         System.out.println(robotOne.getName());
         robotArea.showOwnerArea();
+
+        playerArea.setOwnerArea(playerArea.setShip(1,1,1, 3, playerArea.getOwnerArea()));
+        playerArea.showOwnerArea();
     }
 }
