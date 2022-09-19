@@ -32,5 +32,7 @@ public class Rules {
     }
     @Getter
     protected HashMap<Integer, Integer> amountOfShips = new HashMap<>();
-
+    public void refactorAmountOfShips(int key, int value) {
+        this.amountOfShips.put(key, amountOfShips.get(key) + value);
+    }
 }
