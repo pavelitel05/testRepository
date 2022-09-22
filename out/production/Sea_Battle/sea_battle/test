@@ -1,0 +1,169 @@
+if (verticalId == 0) {
+            for (int i = 0; i < size; i++) {
+                if ((y + 1) == 10) {
+                    if ((y + 1) == 10) {
+                        if ((x + i) == 10) {
+                            continue;
+                        }
+                    } else if (selfArea[x + i][y + 1] != 1) {
+                        continue;
+                    }
+                    if ((x + i) == 10) {
+                        if ((y + 1) == 10) {
+                            continue;
+                        }
+                    } else if (selfArea[x + i][y + 1] != 1) {
+                        continue;
+                    }
+                }
+            }
+        } else if (verticalId == 1) {
+            for (int i = 0; i < size; i++) {
+                if((x + 1) == 10){
+                    if((y + i) == 10){
+                        continue;
+                    }
+                }else if(selfArea[x + 1][y + i] != 1){
+                    continue;
+                }
+                if((x + 1) == 10){
+                    if((y + i) == 10){
+                        continue;
+                    }
+                }else if(selfArea[x + 1][y + i] != 1){
+                    continue;
+                }
+            }
+        }
+
+
+
+if(verticalId == 1){
+    if((x + size) > 9){
+        this.isNearVar = True;
+        return this.isNearVar;
+    }
+    for(int i = -1; i < size + 1; i++){
+        try{
+            if(selfArea[x+1][y+i] != 1){
+                try{
+                    if(selfArea[x-1][y+i] !=1){
+                        try{
+                            if(selfArea[x][y] != 1){
+                                continue;
+                            }
+                        }catch(){
+                            continue;
+                        }
+                    }
+                }catch(){
+                    try{
+                        if(selfArea[x][y] != 1){
+                            continue;
+                        }
+                    }catch(){
+                        continue;
+                    }
+                }
+            }
+        }catch(){
+            try{
+                if(selfArea[x-1][y+i] !=1){
+                    try{
+                        if(selfArea[x][y] != 1){
+                            continue;
+                        }
+                    }catch(){
+                        continue;
+                    }
+                }
+            }catch(){
+                try{
+                    if(selfArea[x][y] != 1){
+                        continue;
+                    }
+                }catch(){
+                    continue;
+                }
+            }
+        }
+    }
+}else if(verticalId == 0){
+    if((y + size) > 9){
+        this.isNearVar = True;
+        return this.isNearVar;
+    }
+    for(int i = -1; i < size + 1; i++){
+        try{
+            if(selfArea[x+i][y+1] != 1){
+                try{
+                    if(selfArea[x+i][y-1] !=1){
+                        try{
+                            if(selfArea[x][y] != 1){
+                                continue;
+                            }
+                        }catch(){
+                            continue;
+                        }
+                    }
+                }catch(){
+                    try{
+                        if(selfArea[x][y] != 1){
+                            continue;
+                        }
+                    }catch(){
+                        continue;
+                    }
+                }
+            }
+        }catch(){
+            try{
+                if(selfArea[x+i][y-1] != 1){
+                    try{
+                        if(selfArea[x][y] != 1){
+                            continue;
+                        }
+                    }catch(){
+                        continue;
+                    }
+                }
+            }catch(){
+                try{
+                    if(selfArea[x][y] != 1){
+                        continue;
+                    }
+                }catch(){
+                    continue;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                int sizeFactor = ThreadLocalRandom.current().nextInt(1, 5);
+                if(this.amountOfShips.get(sizeFactor) != 0){
+                    int vertFactor = ThreadLocalRandom.current().nextInt(0, 2);
+                    if(isNear(i + 1, j + 1, sizeFactor, vertFactor, ownerArea) == false){
+                        setShip(vertFactor, i + 1, j + 1, sizeFactor, ownerArea);
+//                        refactorAmountOfShips(sizeFactor, -1);
+                        this.amountOfShips.put(sizeFactor, this.amountOfShips.get(sizeFactor) - 1);
+                    }
+                }
+            }
+        }
+//        if(this.amountOfShips.get(1) + this.amountOfShips.get(2) + this.amountOfShips.get(3) + this.amountOfShips.get(4) != 0){
+            System.out.println(this.amountOfShips.get(1) + this.amountOfShips.get(2) + this.amountOfShips.get(3) + this.amountOfShips.get(4));
+//            feelOwnerArea(ownerArea);
+//        }
+        return ownerArea;

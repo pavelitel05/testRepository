@@ -21,6 +21,10 @@ public class TheGame {
         Area robotArea = new Area();
         robotArea.createOwnerArea();
         playerArea.createOwnerArea();
+        playerArea.initAmountOfShips();
+        robotArea.initAmountOfShips();
+        playerArea.feelOwnerArea(playerArea.getOwnerArea());
+        robotArea.feelOwnerArea(robotArea.getOwnerArea());
 
         System.out.println("Ниже представленны два поля, вверхнее- ваше, нижнее- робота.");
         System.out.println(playerOne.getName());
@@ -28,7 +32,6 @@ public class TheGame {
         System.out.println(robotOne.getName());
         robotArea.showOwnerArea();
 
-        playerArea.setOwnerArea(playerArea.setShip(1,1,1, 3, playerArea.getOwnerArea()));
-        playerArea.showOwnerArea();
+//      playerArea.setOwnerArea(playerArea.setShip(1,1,1, 3, playerArea.getOwnerArea()));
     }
 }
