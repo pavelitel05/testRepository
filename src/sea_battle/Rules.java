@@ -1,153 +1,44 @@
 package sea_battle;
 
+import java.util.Locale;
+
 public class Rules {
-    public boolean isNear(int x, int y, int size, int verticalId, int[][] selfArea) {
-        x -= 1;
-        y -= 1;
-        boolean isNearVar = false;
-        if(verticalId == 1){
-            if((y + size) > 10){
-                isNearVar = true;
-                return isNearVar;
-            }
-            for(int i = -1; i < size + 1; i++){
-                try{
-                    if(selfArea[x+1][y+i] != 1){
-                        try{
-                            if(selfArea[x-1][y+i] !=1){
-                                try{
-                                    if(selfArea[x][y] != 1){
-                                        continue;
-                                    }else{
-                                        isNearVar = true;
-                                        break;
-                                    }
-                                }catch(ArrayIndexOutOfBoundsException exception){
-                                    continue;
-                                }
-                            }else{
-                                isNearVar = true;
-                                break;
-                            }
-                        }catch(ArrayIndexOutOfBoundsException exception){
-                            try{
-                                if(selfArea[x][y] != 1){
-                                    continue;
-                                }else{
-                                    isNearVar = true;
-                                    break;
-                                }
-                            }catch(ArrayIndexOutOfBoundsException e){
-                                continue;
-                            }
-                        }
-                    }else{
-                        isNearVar = true;
+    public static void printRules(String command) {
+        if(command.equals("Rules")){
+            System.out.println("Where will be rules");
+        }
+    }
+    public boolean canSet(int[][] playerArea, int x, int y, int verticalID, int size){
+        boolean canSet = true;
+        if(verticalID == 0){
+            if(x + size < 11) {
+                for (int cord = -1; cord < size + 1; cord++) {
+                    if ((playerArea[y][x + cord] != 1 | (y == 0 & x + cord == 1) | (y == 1 & x + cord == 11) | (y == 11 & x + cord == 0) | (y == 11 & x + cord == 1)) & (playerArea[y - 1][x + cord] != 1 | (y - 1 == 0 & x + cord == 1) | (y -1 == 1 & x + cord == 11) | (y - 1 == 11 & x + cord == 0) | (y - 1 == 11 & x + cord == 1)) & (playerArea[y + 1][x + cord] != 1 | (y + 1 == 0 & x + cord == 1) | (y + 1 == 1 & x + cord == 11) | (y + 1 == 11 & x + cord == 0) | (y + 1 == 11 & x + cord == 1))) {
+                        continue;
+                    } else {
+                        canSet = false;
                         break;
                     }
-                }catch(ArrayIndexOutOfBoundsException exception){
-                    try{
-                        if(selfArea[x-1][y+i] !=1){
-                            try{
-                                if(selfArea[x][y] != 1){
-                                    continue;
-                                }else{
-                                    isNearVar = true;
-                                    break;
-                                }
-                            }catch(ArrayIndexOutOfBoundsException e){
-                                continue;
-                            }
-                        }else{
-                            isNearVar = true;
-                            break;
-                        }
-                    }catch(ArrayIndexOutOfBoundsException e){
-                        try{
-                            if(selfArea[x][y] != 1){
-                                continue;
-                            }else{
-                                isNearVar = true;
-                                break;
-                            }
-                        }catch(ArrayIndexOutOfBoundsException ex){
-                            continue;
-                        }
-                    }
                 }
+            }else{
+                canSet = false;
+                return canSet;
             }
-        }else if(verticalId == 0){
-            if((x + size) > 10){
-                isNearVar = true;
-                return isNearVar;
-            }
-            for(int i = -1; i < size + 1; i++){
-                try{
-                    if(selfArea[x+i][y+1] != 1){
-                        try{
-                            if(selfArea[x+i][y-1] !=1){
-                                try{
-                                    if(selfArea[x][y] != 1){
-                                        continue;
-                                    }else{
-                                        isNearVar = true;
-                                        break;
-                                    }
-                                }catch(ArrayIndexOutOfBoundsException exception){
-                                    continue;
-                                }
-                            }else{
-                                isNearVar = true;
-                                break;
-                            }
-                        }catch(ArrayIndexOutOfBoundsException exception){
-                            try{
-                                if(selfArea[x][y] != 1){
-                                    continue;
-                                }else{
-                                    isNearVar = true;
-                                    break;
-                                }
-                            }catch(ArrayIndexOutOfBoundsException e){
-                                continue;
-                            }
-                        }
-                    }else{
-                        isNearVar = true;
+        }else{
+            if(y + size < 11) {
+                for (int cord = -1; cord < size + 1; cord++) {
+                    if ((playerArea[y + cord][x] != 1 | (y + cord == 0 & x == 1) | (y + cord == 1 & x == 11) | (y + cord == 11 & x == 0) | (y + cord == 11 & x == 1)) & (playerArea[y + cord][x + 1] != 1 | (y + cord == 0 & x + 1 == 1) | (y + cord == 1 & x + 1 == 11) | (y + cord == 11 & x + 1 == 0) | (y + cord == 11  & x + 1 == 1)) & (playerArea[y + cord][x - 1] != 1 | (y + cord == 0 & x - 1 == 1) | (y + cord == 1 & x - 1 == 11) | (y + cord == 11 & x - 1 == 0) | (y + cord == 11 & x - 1 == 1))) {
+                        continue;
+                    } else {
+                        canSet = false;
                         break;
                     }
-                }catch(ArrayIndexOutOfBoundsException e){
-                    try{
-                        if(selfArea[x+i][y-1] != 1){
-                            try{
-                                if(selfArea[x][y] != 1){
-                                    continue;
-                                }else{
-                                    isNearVar = true;
-                                    break;
-                                }
-                            }catch(ArrayIndexOutOfBoundsException exception){
-                                continue;
-                            }
-                        }else{
-                            isNearVar = true;
-                            break;
-                        }
-                    }catch(ArrayIndexOutOfBoundsException exception){
-                        try{
-                            if(selfArea[x][y] != 1){
-                                continue;
-                            }else{
-                                isNearVar = true;
-                                break;
-                            }
-                        }catch(ArrayIndexOutOfBoundsException ex){
-                            continue;
-                        }
-                    }
                 }
+            }else{
+                canSet = false;
+                return canSet;
             }
         }
-        return isNearVar;
+        return canSet;
     }
 }
