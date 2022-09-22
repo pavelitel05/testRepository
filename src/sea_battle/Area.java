@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 public class Area extends Rules{
     protected int[][] playerArea = new int[12][12];
+    protected int[][] currentPlayerArea = new int[12][12];
+    @Getter
+    @Setter
+    private int destroyedParts = 20;
     @Getter
     private HashMap<Integer, Integer> amountOfShips = new HashMap<>();
     public void initAmountOfShips(){
@@ -44,6 +48,36 @@ public class Area extends Rules{
         this.playerArea[10][0] = 0;
         this.playerArea[11][10] = 0;
         this.playerArea[10][11] = 0;
+    }
+    public void generateCurrentPlayerArea(){
+//      Заполняю нулями
+        for(int y = 1; y < 11; y++){
+            for(int x = 1; x < 11; x++) {
+                this.currentPlayerArea[y][x] = 0;
+            }
+        }
+//        Заполняю границу
+        for(int x = 0; x < 12; x++){
+            this.currentPlayerArea[0][x] = x;
+        }
+        for(int x = 0; x < 12; x++){
+            this.currentPlayerArea[11][x] = x;
+        }
+        for(int x = 0; x < 12; x++){
+            this.currentPlayerArea[x][0] = x;
+        }
+        for(int x = 0; x < 12; x++){
+            this.currentPlayerArea[x][11] = x;
+        }
+//        Заполняю углы
+        this.currentPlayerArea[0][0] = 5;
+        this.currentPlayerArea[0][11] = 5;
+        this.currentPlayerArea[11][0] = 5;
+        this.currentPlayerArea[11][11] = 5;
+        this.currentPlayerArea[0][10] = 0;
+        this.currentPlayerArea[10][0] = 0;
+        this.currentPlayerArea[11][10] = 0;
+        this.currentPlayerArea[10][11] = 0;
     }
     public void feelPlayerArea() {
         int verticalId = ThreadLocalRandom.current().nextInt(0, 2);
